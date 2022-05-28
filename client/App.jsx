@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
+import LoginContainer from './containers/LoginContainer.jsx';
 import { connect } from "react-redux";
 
 const mapState = state => state;
@@ -10,8 +10,9 @@ const App = props => {
         <div>
             <main>
                 <Routes>
-                    <Route exact path='/' element={ <Login /> } />
-                    <Route exact path='/home' element={ <Home /> } />
+                    <Route exact path='/' element={ <LoginContainer /> } />
+                    
+                   {/*  <Route exact path='/home' element={ <Home /> } / */}
                 </Routes>
             </main>
         </div>

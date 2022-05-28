@@ -7,11 +7,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_ALL_USERS:
-      return {
-        ...state,
-        {allUsers}
-      }
+    // case types.GET_ALL_USERS:
+    //   return {
+    //     ...state,
+    //   }
 
     case types.SET_USER:
       return {

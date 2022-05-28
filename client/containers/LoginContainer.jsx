@@ -6,18 +6,20 @@ import Login from '../components/Login.jsx';
 import Guest from '../components/Guest.jsx';
 
 const mapStateToProps = state => ({
-    isUser:
+    isUser: state.cart.isUser,
 });
 
 const mapDispatchToProps = dispatch => ({
-
+    setUser: (username) => dispatch(setUserActionCreator(username)),
+    setGuest: () => dispatch(setGuestActionCreator()),
+    addUser: (username) => dispatch(addUserActionCreator(username)),
 });
 
 const LoginContainer = props => {
     return (
         <div id="loginContainer">
-            < Login />
-            < Guest />
+            < Login setUser={props.setUser} addUser={props.addUser}/>
+            < Guest setGuest={props.setGuest}/>
         </div>
     );
 };
