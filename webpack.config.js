@@ -7,14 +7,14 @@ module.exports = {
   mode: process.env.NODE_ENV,
   entry: './client/index.js',
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    filename: 'bundle.js',
+    publicPath: '/dist',
   },
   devServer: {
     host: 'localhost',
     static: {
-      directory: path.join(__dirname, './dist/index.html')
+      directory: path.join(__dirname),
     },
     open: true,
     hot: true,
@@ -48,14 +48,14 @@ module.exports = {
           // Translates CSS into CommonJS
           'css-loader',
           // Compiles Sass to CSS
-          'sass-loader',
+          'sass-loader'
         ],
       }
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './client/index.html'
+      template: 'index.html'
     })
   ],
 }
