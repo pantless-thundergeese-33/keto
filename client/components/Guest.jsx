@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 
 const Guest = props => {
 
-    return (
-        <div id="guest">
-            <Link to={'/home'}>
-              <button onClick={props.setGuest}>
-                Continue as Guest
-              </button>
-            </Link>
-        </div>
-    );
+  return (
+    <div className="guest">
+      <Link to={'/home'}>
+        <button className="guestBtn" onClick={props.setGuest}>
+          Continue as Guest
+        </button>
+      </Link>
+    </div>
+  );
 };
 
 export default Guest;

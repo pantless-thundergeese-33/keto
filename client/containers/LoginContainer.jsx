@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
 
 const LoginContainer = props => {
     return (
-        <div id="loginContainer">
+        <div className="loginContainer">
             < Login setUser={props.setUser} addUser={props.addUser}/>
             < Guest setGuest={props.setGuest}/>
         </div>
