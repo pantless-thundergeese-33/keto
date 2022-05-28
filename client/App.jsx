@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import { Routes, Route } from 'react-router-dom';
-
+import React from 'react';
 import { connect } from "react-redux";
+import { Routes, Route } from 'react-router-dom';
+import scss from './stylesheets/styles.scss';
+
+import LoginContainer from './containers/LoginContainer.jsx';
+import HomeContainer from './containers/HomeContainer.jsx'
 
 const mapState = state => state;
 
 const App = props => {
     return (
-        <div>
-            <main>
-                <Routes>
-                    <Route exact path='/' element={ <Login /> } />
-                    <Route exact path='/home' element={ <Home /> } />
-                </Routes>
-            </main>
-        </div>
+        <main>
+            <Routes>
+                <Route exact path='/' element={<LoginContainer />} />
+                <Route exact path='/home' element={<HomeContainer />} />
+            </Routes>
+        </main>
     )
 }
 
