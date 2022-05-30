@@ -14,7 +14,6 @@ if (process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'production') {
   });
 }
 
-
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
 });

@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  isUser: [null, null],
+  isUser: [null, null], //isUser[0]: true if user, false if guest; isUser[1]: username
   allUsers: [],
   activity: '',
   carbon: null,

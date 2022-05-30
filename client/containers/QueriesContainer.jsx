@@ -21,6 +21,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const QueriesContainer = props => {
+  
+  const addBtnHelper = async () => {/*fetch request here to /api (proxy)*/return;};
 
   let query;
   if (props.activity === '') query = (<p>search an activity to find its carbon footprint</p>);
@@ -28,15 +30,20 @@ const QueriesContainer = props => {
   else if (props.activity === 'flight') query = (<FlightQueries updateCarbonActionCreator={props.updateCarbonActionCreator} />);
   else if (props.activity === 'shipping') query = (<ShippingQueries updateCarbonActionCreator={props.updateCarbonActionCreator} />);
 
-  let carbonOutput;
-  if (props.carbon == null) carbonOutput = (<div className='carbonOutput'></div>)
-  else carbonOutput = (<div className='carbonOutput'>{props.carbon} lbs of Carbon Emissions</div>)
+  let carbonOutput, addBtn;
+  if (props.carbon == null) {
+    carbonOutput = (<div className='carbonOutput'></div>);
+    addBtn = (<div className='addBtn'></div>);
+  } else {
+    carbonOutput = (<div className='carbonOutput'>{props.carbon} lbs of Carbon Emissions</div>);
+    addBtn = (<div className='addBtn'><button className='homeBtn' id='addBtn' onClick={addBtnHelper}>Add</button></div>);
+  }
 
   return (
     <div id="queriesContainer">
       {query}
       {carbonOutput}
-      {/* <button id='submitBtn'>Submit</button> */}
+      {addBtn}
     </div>
   );
 };

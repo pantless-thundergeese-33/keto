@@ -35,7 +35,7 @@ const FlightQueries = props => {
       <input id='departing' type='text'></input>
       <label htmlFor='arriving'>Arriving Airport (e.g. LAX):</label>
       <input id='arriving' type='text'></input>
-      <button id='checkBtn' onClick={checkBtnHelper}>Check</button>
+      <button className='homeBtn' id='checkBtn' onClick={checkBtnHelper}>Check</button>
     </div>
   )
 }

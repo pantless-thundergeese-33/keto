@@ -55,7 +55,7 @@ const ShippingQueries = props => {
         <option value="truck">Truck</option>
         <option value="plane">Plane</option>
       </select>
-      <button id='checkBtn' onClick={checkBtnHelper}>Check</button>
+      <button className='homeBtn' id='checkBtn' onClick={checkBtnHelper}>Check</button>
     </div>
   )
 }

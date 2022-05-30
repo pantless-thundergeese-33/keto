@@ -40,7 +40,7 @@ const ElectricityQueries = props => {
       <input id='country' type='text'></input>
       <label htmlFor='state'>State:</label>
       <input id='state' type='text'></input>
-      <button id='checkBtn' onClick={checkBtnHelper}>Check</button>
+      <button className='homeBtn' id='checkBtn' onClick={checkBtnHelper}>Check</button>
     </div>
   )
 }
