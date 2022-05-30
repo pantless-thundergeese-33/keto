@@ -9,6 +9,7 @@ App
       |SearchContainer
          |Search (dropdown)
          |QueriesContainer (CheckDisplay, CheckBtn, AddBtn)
+            |ElectricityQueries
             |DriveQueries
             |FlightQueries
             |RunQueries
