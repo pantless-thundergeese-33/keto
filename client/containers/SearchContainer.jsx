@@ -5,18 +5,19 @@ import * as actions from '../actions/actions';
 import Search from '../components/Search.jsx';
 import QueriesContainer from './QueriesContainer.jsx'
 
-// const mapStateToProps = state => {}
 
-// const mapDispatchToProps = dispatch => {}
+const mapDispatchToProps = dispatch => ({
+  setActivityActionCreator: (activity) => dispatch(actions.setActivityActionCreator(activity)),
+});
 
 const SearchContainer = props => {
   return (
     <div id="searchContainer">
-      < Search />
+      < Search setActivityActionCreator={props.setActivityActionCreator} />
       < QueriesContainer />
     </div>
   );
 };
 
-export default SearchContainer;
-// export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer);
+// export default SearchContainer;
+export default connect(null, mapDispatchToProps)(SearchContainer);

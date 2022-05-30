@@ -108,6 +108,26 @@ select,option {
     flex-direction: row;
 }
 
+#searchList {
+  margin-top: 10vh;
+}
+
 input {
     margin: 5px;
+}
+
+#queriesContainer {
+  padding: 10vh;
+}
+
+.queriesFields {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#checkBtn {
+  margin-top: 3vh;
 }

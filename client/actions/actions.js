@@ -13,3 +13,13 @@ export const addUserActionCreator = username => ({
   type: types.ADD_USER,
   payload: username,
 });
+
+export const setActivityActionCreator = activity => ({
+  type: types.SET_ACTIVITY,
+  payload: activity,
+});
+
+export const updateCarbonActionCreator = carbon => ({
+  type: types.UPDATE_CARBON,
+  payload: carbon,
+});

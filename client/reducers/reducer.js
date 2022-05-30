@@ -2,7 +2,9 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   isUser: [null, null],
-  allUsers: []
+  allUsers: [],
+  activity: '',
+  carbon: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,13 +23,28 @@ const reducer = (state = initialState, action) => {
     case types.SET_GUEST:
       return {
         ...state,
-        
+
       }
 
     case types.ADD_USER:
+      return {
+        ...state,
+      }
+
+    case types.SET_ACTIVITY:
+      return {
+        ...state,
+        activity: action.payload,
+      }
+
+    case types.UPDATE_CARBON:
+      return {
+        ...state,
+        carbon: action.payload,
+      }
 
     default: {
-        return state;
+      return state;
     }
   }
 };
