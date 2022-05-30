@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import ElectricityQueries from '../components/ElectricityQueries.jsx';
 import FlightQueries from '../components/FlightQueries.jsx';
+import ShippingQueries from '../components/ShippingQueries.jsx';
 
 // type: electricity,
 //     electricity_unit: "mwh",
@@ -22,9 +23,10 @@ const mapDispatchToProps = dispatch => ({
 const QueriesContainer = props => {
 
   let query;
-  if (props.activity === '') query = (<p>search an activity to find its carbon footprint</p>)
-  else if (props.activity === 'electricity') query = (<ElectricityQueries updateCarbonActionCreator={props.updateCarbonActionCreator} />)
+  if (props.activity === '') query = (<p>search an activity to find its carbon footprint</p>);
+  else if (props.activity === 'electricity') query = (<ElectricityQueries updateCarbonActionCreator={props.updateCarbonActionCreator} />);
   else if (props.activity === 'flight') query = (<FlightQueries updateCarbonActionCreator={props.updateCarbonActionCreator} />);
+  else if (props.activity === 'shipping') query = (<ShippingQueries updateCarbonActionCreator={props.updateCarbonActionCreator} />);
 
   let carbonOutput;
   if (props.carbon == null) carbonOutput = (<div className='carbonOutput'></div>)

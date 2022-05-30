@@ -1,11 +1,8 @@
 import React from 'react';
-// const cors = require('cors')
-
 
 const FlightQueries = props => {
   
   const checkBtnHelper = async () => {
-    // const eUnit = document.getElementById('electricity_unit').value;
     const passengers = document.getElementById('passengers').value;
     const departing = document.getElementById('departing').value;
     const arriving = document.getElementById('arriving').value;

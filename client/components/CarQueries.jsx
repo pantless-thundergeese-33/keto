@@ -19,7 +19,7 @@ const CarQueries = props => {
       },
       body: JSON.stringify({
         type: 'electricity',
-        electricity_unit: 'mwh',
+        electricity_unit: 'kwh',
         electricity_value: eValue,
         country: country,
         state: province,
@@ -34,7 +34,7 @@ const CarQueries = props => {
   
   return (
     <div className="queriesFields" id='electricityFields'>
-      <label htmlFor='electricity_value'>Electricity used in mwh:</label>
+      <label htmlFor='electricity_value'>Electricity used in kwh:</label>
       <input id='electricity_value' type='text'></input>
       <label htmlFor='country'>Country:</label>
       <input id='country' type='text'></input>
