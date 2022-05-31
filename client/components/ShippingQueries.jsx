@@ -26,7 +26,7 @@ const ShippingQueries = props => {
     .catch(err => console.log('error: ', err));
     response = await response.json();
     const { carbon_lb } = response.data.attributes;
-    props.updateCarbonActionCreator(carbon_lb);
+    props.updateCarbon(carbon_lb);
     return;
   };
   

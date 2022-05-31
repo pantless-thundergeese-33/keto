@@ -85,9 +85,14 @@ button {
   border: none;
 }
 
+button:hover {
+  background-color: $dark-blue;
+}
+
 .guestBtn {
   margin-top: 15px;
 }
+
 
 select,option {
   color: $light-green;

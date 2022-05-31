@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import scss from './stylesheets/styles.scss';
 
 import LoginContainer from './containers/LoginContainer.jsx';
@@ -14,6 +14,7 @@ const App = props => {
             <Routes>
                 <Route exact path='/' element={<LoginContainer />} />
                 <Route exact path='/home' element={<HomeContainer />} />
+                <Route path="/login" element={ <Navigate to="/home" /> } />
             </Routes>
         </main>
     )

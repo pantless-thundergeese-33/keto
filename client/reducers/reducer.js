@@ -2,19 +2,15 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   isUser: [null, null], //isUser[0]: true if user, false if guest; isUser[1]: username
-  allUsers: [],
   activity: '',
   carbon: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // case types.GET_ALL_USERS:
-    //   return {
-    //     ...state,
-    //   }
 
     case types.SET_USER:
+      console.log('reducer set user', action.payload)
       return {
         ...state,
         isUser: [true, action.payload],
@@ -23,12 +19,14 @@ const reducer = (state = initialState, action) => {
     case types.SET_GUEST:
       return {
         ...state,
-
+        isUser: [false, null],
       }
 
     case types.ADD_USER:
+      console.log('reducer add user', action.payload)
       return {
         ...state,
+        isUser: [true, action.payload],
       }
 
     case types.SET_ACTIVITY:

@@ -7,13 +7,13 @@ import QueriesContainer from './QueriesContainer.jsx'
 
 
 const mapDispatchToProps = dispatch => ({
-  setActivityActionCreator: (activity) => dispatch(actions.setActivityActionCreator(activity)),
+  setActivity: (activity) => dispatch(actions.setActivityActionCreator(activity)),
 });
 
 const SearchContainer = props => {
   return (
     <div id="searchContainer">
-      < Search setActivityActionCreator={props.setActivityActionCreator} />
+      < Search setActivity={props.setActivity} />
       < QueriesContainer />
     </div>
   );
