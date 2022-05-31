@@ -15,7 +15,7 @@ const Login = props => {
           alert('incorrect username and/or password');
         } else {
           props.setUser(document.getElementById('username').value);
-          Navigate('/login');
+          navigate('/login');
         }
       })
       .catch((error) => {
