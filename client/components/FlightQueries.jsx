@@ -1,11 +1,8 @@
 import React from 'react';
-// const cors = require('cors')
-
 
 const FlightQueries = props => {
   
   const checkBtnHelper = async () => {
-    // const eUnit = document.getElementById('electricity_unit').value;
     const passengers = document.getElementById('passengers').value;
     const departing = document.getElementById('departing').value;
     const arriving = document.getElementById('arriving').value;
@@ -26,7 +23,7 @@ const FlightQueries = props => {
     .catch(err => console.log('error: ', err));
     response = await response.json();
     const { carbon_lb } = response.data.attributes;
-    props.updateCarbonActionCreator(carbon_lb);
+    props.updateCarbon(carbon_lb);
     return;
   };
   
@@ -38,7 +35,7 @@ const FlightQueries = props => {
       <input id='departing' type='text'></input>
       <label htmlFor='arriving'>Arriving Airport (e.g. LAX):</label>
       <input id='arriving' type='text'></input>
-      <button id='checkBtn' onClick={checkBtnHelper}>Check</button>
+      <button className='homeBtn' id='checkBtn' onClick={checkBtnHelper}>Check</button>
     </div>
   )
 }

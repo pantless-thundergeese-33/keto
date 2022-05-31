@@ -19,7 +19,7 @@ const CarQueries = props => {
       },
       body: JSON.stringify({
         type: 'electricity',
-        electricity_unit: 'mwh',
+        electricity_unit: 'kwh',
         electricity_value: eValue,
         country: country,
         state: province,
@@ -28,13 +28,13 @@ const CarQueries = props => {
     .catch(err => console.log('error: ', err));
     response = await response.json();
     const { carbon_lb } = response.data.attributes;
-    props.updateCarbonActionCreator(carbon_lb);
+    props.updateCarbon(carbon_lb);
     return;
   };
   
   return (
     <div className="queriesFields" id='electricityFields'>
-      <label htmlFor='electricity_value'>Electricity used in mwh:</label>
+      <label htmlFor='electricity_value'>Electricity used in kwh:</label>
       <input id='electricity_value' type='text'></input>
       <label htmlFor='country'>Country:</label>
       <input id='country' type='text'></input>

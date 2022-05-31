@@ -19,28 +19,28 @@ mongoose.connect(MONGO_URI, {
 //  user ObjectId, inputs (electricity/car/flight/shipping), footprint(carbon-lbs), footprint(carbon-mt), time of request)
 
 const activitySchema = new Schema({
-  userId: {
-    type: Schema.Types.ObjectId,
+  username: {
+    type: String,
     ref: 'user'
   },
-  activityType: String,
-  details: {},
-  footprintLb: Number,
-  footprintMt: Number,
-  reqTime: Date
+  activity: String,
+  carbon_lb: Number,
 });
 
 
 // users      
 const userSchema = new Schema({
-  username: String,
+  username: {
+    type: String,
+    unique: true
+  },
   password: String,
-  activities:{
+  activities:[{
       activityId: {
         type: Schema.Types.ObjectId,
         ref: 'activity'
       }
-  },
+  }],
 });
 
 const User = mongoose.model('user',userSchema);
