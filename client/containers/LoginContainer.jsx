@@ -5,14 +5,10 @@ import * as actions from '../actions/actions';
 import Login from '../components/Login.jsx';
 import Guest from '../components/Guest.jsx';
 
-const mapStateToProps = state => ({
-    isUser: state.cart.isUser,
-});
-
 const mapDispatchToProps = dispatch => ({
-    setUser: (username) => dispatch(setUserActionCreator(username)),
-    setGuest: () => dispatch(setGuestActionCreator()),
-    addUser: (username) => dispatch(addUserActionCreator(username)),
+    setUser: (username) => dispatch(actions.setUserActionCreator(username)),
+    setGuest: () => dispatch(actions.setGuestActionCreator()),
+    addUser: (username) => dispatch(actions.addUserActionCreator(username)),
 });
 
 const LoginContainer = props => {
@@ -24,4 +20,4 @@ const LoginContainer = props => {
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(null, mapDispatchToProps)(LoginContainer);
