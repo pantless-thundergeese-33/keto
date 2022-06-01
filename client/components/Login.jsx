@@ -1,54 +1,86 @@
-import React, { Component } from 'react';
-import { Route, Navigate, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addUserActionCreator, setUserActionCreator } from '../actions/actions';
 
-const Login = (props) => {
+/**
+ * The current version of Login uses Alert messages for debugging. You should absolutely, 100%
+ * remove these from a production app. Using alerts are bad UX.
+ */
+const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const loginBtnHelper = async () => {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const response = await fetch(`/api/login?username=${username}&password=${password}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data.msg) {
-          alert('incorrect username and/or password');
-        } else {
-          props.setUser(document.getElementById('username').value);
-          navigate('/login');
-        }
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  };
+  async function handleLogin() {
+    try {
+      const response = await fetch(`/api/login?username=${username}&password=${password}`);
+      const json = await response.json();
 
-  const createAccountBtnHelper = async () => {
-    const response = await fetch('/api/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: document.getElementById('username').value,
-        password: document.getElementById('password').value,
-      }),
-    })
-      .then((res) => res.json())
-      .catch((error) => {
-        console.error('Error:', error);
+      if (!json || !json.msg) {
+        alert('incorrect username and/or password');
+        return;
+      }
+
+      dispatch(setUserActionCreator(username));
+      navigate('/login');
+    } catch (err) {
+      console.error(err instanceof Error ? err.stack : err);
+    }
+  }
+
+  async function handleAccountCreation() {
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-    await props.addUser(response);
-    navigate('/login');
-  };
+
+      const createdUsername = response.json();
+      if (typeof createdUsername !== 'string' || createdUsername.length === 0) {
+        console.error("Server didn't send back response data correctly.");
+        return;
+      }
+
+      dispatch(addUserActionCreator(createdUsername));
+      navigate('/login');
+    } catch (err) {
+      console.error(err instanceof Error ? err.stack : err);
+    }
+  }
 
   return (
     <div className="login">
       <h3>Log In</h3>
-      <input id="username" type="text" placeholder="username" />
-      <input id="password" type="password" placeholder="password" />
+
+      <label htmlFor="username">Username</label>
+      <input
+        id="username"
+        type="text"
+        value={username}
+        onChange={(event) => setUsername(event.target.value)}
+      />
+
+      <label htmlFor="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
+
       <div className="signInButtons">
-        <button onClick={loginBtnHelper}>Log In</button>
-        <button onClick={createAccountBtnHelper}>Create Account</button>
+        <button onClick={handleLogin} onBlur={handleLogin}>
+          Log In
+        </button>
+
+        <button onClick={handleAccountCreation} onBlur={handleAccountCreation}>
+          Create Account
+        </button>
       </div>
     </div>
   );

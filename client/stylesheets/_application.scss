@@ -90,8 +90,22 @@ button:hover {
   background-color: $dark-blue;
 }
 
-.guestBtn {
-  margin-top: 15px;
+.guest-link-btn,
+.guest-link-btn:link,
+.guest-link-btn:visited {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  background-color: $medium-blue;
+  color: $light-green;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+.guest-link-btn:hover,
+.guest-link-btn:focus,
+.guest-link-btn:active {
+  background-color: $dark-blue;
 }
 
 select,
