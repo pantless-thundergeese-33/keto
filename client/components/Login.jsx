@@ -1,17 +1,57 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { addUserActionCreator, setUserActionCreator } from '../actions/actions';
 
 /**
  * The current version of Login uses Alert messages for debugging. You should absolutely, 100%
  * remove these from a production app. Using alerts are bad UX.
  */
-const Login = ({ addUser, setUser }) => {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // Might have to use useCallback instead; still looking into this
-  useEffect(() => {}, []);
+  async function handleLogin() {
+    try {
+      const response = await fetch(`/api/login?username=${username}&password=${password}`);
+      const json = await response.json();
+
+      if (!json || !json.msg) {
+        alert('incorrect username and/or password');
+        return;
+      }
+
+      dispatch(setUserActionCreator(username));
+      navigate('/login');
+    } catch (err) {
+      console.error(err instanceof Error ? err.stack : err);
+    }
+  }
+
+  async function handleAccountCreation() {
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const createdUsername = response.json();
+      if (typeof createdUsername !== 'string' || createdUsername.length === 0) {
+        console.error("Server didn't send back response data correctly.");
+        return;
+      }
+
+      dispatch(addUserActionCreator(createdUsername));
+      navigate('/login');
+    } catch (err) {
+      console.error(err instanceof Error ? err.stack : err);
+    }
+  }
 
   return (
     <div className="login">
@@ -44,48 +84,6 @@ const Login = ({ addUser, setUser }) => {
       </div>
     </div>
   );
-
-  ////////// Start of internal helpers
-
-  async function handleLogin() {
-    try {
-      const response = await fetch(`/api/login?username=${username}&password=${password}`);
-      const json = await response.json();
-
-      if (!json || !json.msg) {
-        alert('incorrect username and/or password');
-        return;
-      }
-
-      setUser(username);
-      navigate('/login');
-    } catch (err) {
-      console.error(err instanceof Error ? err.stack : err);
-    }
-  }
-
-  async function handleAccountCreation() {
-    try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        body: JSON.stringify({ username, password }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      const createdUsername = response.json();
-      if (typeof createdUsername !== 'string' || createdUsername.length === 0) {
-        console.error("Server didn't send back response data correctly.");
-        return;
-      }
-
-      addUser(createdUsername);
-      navigate('/login');
-    } catch (err) {
-      console.error(err instanceof Error ? err.stack : err);
-    }
-  }
 };
 
 export default Login;
