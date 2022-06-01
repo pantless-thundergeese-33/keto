@@ -14,7 +14,11 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const setGuest = () => dispatch(setGuestActionCreator());
+  const dispatchers = {
+    setGuest: () => dispatch(setGuestActionCreator()),
+    addUser: (username) => dispatch(addUserActionCreator(username)),
+    setUser: (username) => dispatch(setUserActionCreator(username)),
+  };
 
   async function handleLogin() {
     try {
@@ -26,7 +30,7 @@ const Login = () => {
         return;
       }
 
-      dispatch(setUserActionCreator(username));
+      dispatchers.setUser(username);
       navigate('/login');
     } catch (err) {
       console.error(err instanceof Error ? err.stack : err);
@@ -49,7 +53,7 @@ const Login = () => {
         return;
       }
 
-      dispatch(addUserActionCreator(createdUsername));
+      dispatchers.addUser(createdUsername);
       navigate('/login');
     } catch (err) {
       console.error(err instanceof Error ? err.stack : err);
@@ -89,10 +93,12 @@ const Login = () => {
       </div>
 
       <div className="guest">
-        <Link to={'/home'} onClick={setGuest} className="guest-link-btn">
+        <Link to={'/home'} onClick={dispatchers.setGuest} className="guest-link-btn">
           Continue as Guest
         </Link>
       </div>
+
+      <div className="flex-spacer"></div>
     </div>
   );
 };

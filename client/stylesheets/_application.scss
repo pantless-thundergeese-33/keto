@@ -60,6 +60,10 @@ main {
   align-items: center;
 }
 
+.flex-spacer {
+  flex-basis: 20%;
+}
+
 #username {
   color: white;
   background-color: $medium-blue;
