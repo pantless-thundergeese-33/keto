@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const MONGO_URI = 'mongodb+srv://paulyiengr:codesmithtemppw@cluster1.zmttq.mongodb.net/?retryWrites=true&w=majority';
+const MONGO_URI =
+  'mongodb+srv://practice:qwerty13579@cluster0.ds4ax.mongodb.net/?retryWrites=true&w=majority';
 
-
-mongoose.connect(MONGO_URI, {
-  // Options for parsing the URI (not too sure what's going on here, it's just from the star wars database unit)
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  dbName: 'ketousers'
-})
+mongoose
+  .connect(MONGO_URI, {
+    // Options for parsing the URI (not too sure what's going on here, it's just from the star wars database unit)
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: 'ketoproject',
+  })
   .then(console.log('Connected to Mongo DB.'))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // Collections
 
@@ -21,33 +22,34 @@ mongoose.connect(MONGO_URI, {
 const activitySchema = new Schema({
   username: {
     type: String,
-    ref: 'user'
+    ref: 'user',
   },
   activity: String,
   carbon_lb: Number,
 });
 
-
-// users      
+// users
 const userSchema = new Schema({
   username: {
     type: String,
-    unique: true
+    unique: true,
   },
   password: String,
-  activities:[{
+  activities: [
+    {
       activityId: {
         type: Schema.Types.ObjectId,
-        ref: 'activity'
-      }
-  }],
+        ref: 'activity',
+      },
+    },
+  ],
 });
 
-const User = mongoose.model('user',userSchema);
-const Activity = mongoose.model('activity',activitySchema);
+const User = mongoose.model('user', userSchema);
+const Activity = mongoose.model('activity', activitySchema);
 
 module.exports = {
   User,
-  Activity  
+  Activity,
 };
-//  ObjectId(default), username, password, { activityType, activityId }, 
+//  ObjectId(default), username, password, { activityType, activityId },

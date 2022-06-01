@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-const Guest = props => {
-
+const Guest = (props) => {
   return (
     <div className="guest">
       <Link to={'/home'}>
