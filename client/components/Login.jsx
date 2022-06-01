@@ -71,14 +71,13 @@ const Login = ({ addUser, setUser }) => {
         },
       });
 
-      // Server is currently sending string value directly
-      const jsonResponse = response.json();
-      if (typeof jsonResponse !== 'string' || jsonResponse.length === 0) {
+      const createdUsername = response.json();
+      if (typeof createdUsername !== 'string' || createdUsername.length === 0) {
         alert("Server didn't send back response data correctly.");
         return;
       }
 
-      addUser(response);
+      addUser(createdUsername);
       navigate('/login');
     } catch (err) {
       console.error(err instanceof Error ? err.stack : err);
