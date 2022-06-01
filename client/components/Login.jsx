@@ -23,7 +23,7 @@ const Login = (props) => {
   };
 
   const createAccountBtnHelper = async () => {
-    const response = await fetch('/api', {
+    const response = await fetch('/api/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
