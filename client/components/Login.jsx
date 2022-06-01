@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -9,6 +9,8 @@ const Login = ({ addUser, setUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {}, []);
 
   return (
     <div className="login">
@@ -63,7 +65,7 @@ const Login = ({ addUser, setUser }) => {
 
   async function handleAccountCreation() {
     try {
-      const response = await fetch('/api', {
+      const response = await fetch('/api/signup', {
         method: 'POST',
         body: JSON.stringify({ username, password }),
         headers: {
