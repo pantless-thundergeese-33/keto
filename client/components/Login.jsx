@@ -47,7 +47,12 @@ const Login = () => {
         },
       });
 
-      const createdUsername = response.json();
+      if (!response.ok) {
+        console.error('Response did not come back with usable status code.');
+        return;
+      }
+
+      const createdUsername = await response.json();
       if (typeof createdUsername !== 'string' || createdUsername.length === 0) {
         console.error("Server didn't send back response data correctly.");
         return;
