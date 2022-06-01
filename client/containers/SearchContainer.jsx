@@ -3,18 +3,17 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 
 import Search from '../components/Search.jsx';
-import QueriesContainer from './QueriesContainer.jsx'
+import QueriesContainer from './QueriesContainer.jsx';
 
-
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   setActivity: (activity) => dispatch(actions.setActivityActionCreator(activity)),
 });
 
-const SearchContainer = props => {
+const SearchContainer = (props) => {
   return (
     <div id="searchContainer">
-      < Search setActivity={props.setActivity} />
-      < QueriesContainer />
+      <Search setActivity={props.setActivity} />
+      <QueriesContainer />
     </div>
   );
 };
