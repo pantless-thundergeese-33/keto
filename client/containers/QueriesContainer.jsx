@@ -6,7 +6,7 @@ import FlightQueries from '../components/FlightQueries.jsx';
 import ShippingQueries from '../components/ShippingQueries.jsx';
 
 const queryComponentList = {
-  '': () => <p>search an activity to find its carbon footprint</p>,
+  '': () => <p>Search an activity to find its carbon footprint!</p>,
   electricity: (carbonValue) => <ElectricityQueries updateCarbon={carbonValue} />,
   flight: (carbonValue) => <FlightQueries updateCarbon={carbonValue} />,
   shipping: (carbonValue) => <ShippingQueries updateCarbon={carbonValue} />,
