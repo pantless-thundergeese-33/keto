@@ -14,6 +14,7 @@ controller.newUser = async function (req, res, next) {
     const hashedPassword = await bcrypt.hash(password, 10);
     const data = await User.create({ username: username, password: hashedPassword });
     res.locals.newUsername = data.username;
+    res.locals.id = data._id;
     return next();
   } catch (err) {
     return next(err);
@@ -33,10 +34,11 @@ controller.verifyUser = async function (req, res, next) {
   try {
     const { username, password } = req.query;
     const data = await User.findOne({ username: username });
-    console.log('dataaaa:', data);
     const pwRes = await bcrypt.compare(password, data.password);
-    if (pwRes) return next();
-    else {
+    if (pwRes) {
+      res.locals.id = data._id;
+      return next();
+    } else {
       throw new Error('Incorrect Username/Password');
     }
   } catch (err) {
