@@ -43,7 +43,7 @@ main {
   background: linear-gradient(128deg, $dark-blue 0%, $light-green 100%);
 }
 
-.loginContainer {
+.login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,6 +84,7 @@ button {
   padding: 8px;
   border-radius: 5px;
   border: none;
+  cursor: pointer;
 }
 
 button:hover {
@@ -100,6 +101,7 @@ button:hover {
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .guest-link-btn:hover,

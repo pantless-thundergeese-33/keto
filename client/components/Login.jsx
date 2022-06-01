@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addUserActionCreator, setUserActionCreator } from '../actions/actions';
+import { Link } from 'react-router-dom';
 
 /**
  * The current version of Login uses Alert messages for debugging. You should absolutely, 100%
@@ -12,6 +13,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const setGuest = () => dispatch(setGuestActionCreator());
 
   async function handleLogin() {
     try {
@@ -54,33 +57,41 @@ const Login = () => {
   }
 
   return (
-    <div className="login">
-      <h3>Log In</h3>
+    <div className="login-container">
+      <div className="login">
+        <h3>Log In</h3>
 
-      <label htmlFor="username">Username</label>
-      <input
-        id="username"
-        type="text"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-      />
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
 
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
 
-      <div className="signInButtons">
-        <button onClick={handleLogin} onBlur={handleLogin}>
-          Log In
-        </button>
+        <div className="signInButtons">
+          <button onClick={handleLogin} onBlur={handleLogin}>
+            Log In
+          </button>
 
-        <button onClick={handleAccountCreation} onBlur={handleAccountCreation}>
-          Create Account
-        </button>
+          <button onClick={handleAccountCreation} onBlur={handleAccountCreation}>
+            Create Account
+          </button>
+        </div>
+      </div>
+
+      <div className="guest">
+        <Link to={'/home'} onClick={setGuest} className="guest-link-btn">
+          Continue as Guest
+        </Link>
       </div>
     </div>
   );
