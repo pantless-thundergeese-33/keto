@@ -19,7 +19,7 @@ const Login = () => {
       const json = await response.json();
 
       if (!json || !json.msg) {
-        alert('incorrect username and/or password');
+        console.error('incorrect username and/or password');
         return;
       }
 
