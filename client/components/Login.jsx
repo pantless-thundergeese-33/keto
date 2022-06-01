@@ -10,6 +10,7 @@ const Login = ({ addUser, setUser }) => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  // Might have to use useCallback instead; still looking into this
   useEffect(() => {}, []);
 
   return (
@@ -75,7 +76,7 @@ const Login = ({ addUser, setUser }) => {
 
       const createdUsername = response.json();
       if (typeof createdUsername !== 'string' || createdUsername.length === 0) {
-        alert("Server didn't send back response data correctly.");
+        console.error("Server didn't send back response data correctly.");
         return;
       }
 

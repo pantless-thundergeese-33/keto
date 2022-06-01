@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-const Guest = (props) => {
+const Guest = ({ setGuest }) => {
   return (
     <div className="guest">
-      <Link to={'/home'} onClick={props.setGuest} className="guest-link-btn">
+      <Link to={'/home'} onClick={setGuest} className="guest-link-btn">
         Continue as Guest
       </Link>
     </div>
