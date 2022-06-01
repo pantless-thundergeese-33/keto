@@ -87,13 +87,8 @@ const Login = () => {
         />
 
         <div className="signInButtons">
-          <button onClick={handleLogin} onBlur={handleLogin}>
-            Log In
-          </button>
-
-          <button onClick={handleAccountCreation} onBlur={handleAccountCreation}>
-            Create Account
-          </button>
+          <button onClick={handleLogin}>Log In</button>
+          <button onClick={handleAccountCreation}>Create Account</button>
         </div>
       </div>
 
