@@ -4,6 +4,21 @@ const express = require('express');
 const app = express();
 const apiRouter = require('./routes/api.js');
 const PORT = 3000;
+
+const mongoose = require('mongoose');
+const MONGO_URI =
+  'mongodb+srv://practice:qwerty13579@cluster0.ds4ax.mongodb.net/?retryWrites=true&w=majority';
+
+mongoose
+  .connect(MONGO_URI, {
+    // Options for parsing the URI (not too sure what's going on here, it's just from the star wars database unit)
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: 'ketoproject',
+  })
+  .then(console.log('Connected to Mongo DB.'))
+  .catch(console.error());
+
 //Require cookie-parser to parse incoming cookies from requests
 //npm install cookie-parser
 const cookieParser = require('cookie-parser');

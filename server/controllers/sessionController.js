@@ -4,6 +4,7 @@ const sessionController = {};
 
 sessionController.startSession = async (req, res, next) => {
   try {
+    console.log('In session starter');
     const id = res.locals.id;
     const newSession = await Session.create({ ssid: id });
     return next();
