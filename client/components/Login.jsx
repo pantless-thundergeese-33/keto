@@ -39,8 +39,7 @@ const Login = () => {
           'Content-Type': 'application/json',
         },
       });
-
-      const createdUsername = response.json();
+      const createdUsername = await response.json();
       if (typeof createdUsername !== 'string' || createdUsername.length === 0) {
         console.error("Server didn't send back response data correctly.");
         return;

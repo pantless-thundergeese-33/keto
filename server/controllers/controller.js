@@ -10,10 +10,13 @@ controller.newUser = async function (req, res, next) {
   try {
     const { username, password } = req.body;
     //Hash the new password
-    // console.log(req.body);
+    console.log('request body ************** :', req.body);
     const hashedPassword = await bcrypt.hash(password, 10);
     const data = await User.create({ username: username, password: hashedPassword });
+    console.log('returned data **************:', data);
     res.locals.newUsername = data.username;
+    console.log('data.username *********************:', data.username);
+    res.locals.id = data._id;
     return next();
   } catch (err) {
     return next(err);
@@ -33,10 +36,11 @@ controller.verifyUser = async function (req, res, next) {
   try {
     const { username, password } = req.query;
     const data = await User.findOne({ username: username });
-    console.log('dataaaa:', data);
     const pwRes = await bcrypt.compare(password, data.password);
-    if (pwRes) return next();
-    else {
+    if (pwRes) {
+      res.locals.id = data._id;
+      return next();
+    } else {
       throw new Error('Incorrect Username/Password');
     }
   } catch (err) {
@@ -46,18 +50,20 @@ controller.verifyUser = async function (req, res, next) {
 
 controller.saveActivity = async function (req, res, next) {
   try {
-    const { username, activity, carbon_lb } = req.body;
+    const { activity, carbon_lb } = req.body;
+    const id = req.cookies.ssid;
     console.log('Request Body: ', req.body);
     // Create new activity document in MongoDB with userId, inputs, and outputs
     const newActivity = await Activity.create({
-      username: username,
+      user_id: id,
       activity: activity,
       carbon_lb: carbon_lb,
     });
     // const activityId = newActivity._id;
     console.log('newActivity: ', newActivity);
-    const updateUser = await User.findOneAndUpdate(
-      { username: username },
+    res.locals.newActivity = newActivity;
+    const updateUser = await User.findByIdAndUpdate(
+      id,
       { $push: { activity: newActivity._id } },
       { new: true }
     );
@@ -69,4 +75,26 @@ controller.saveActivity = async function (req, res, next) {
   }
 };
 
+controller.getActivity = async function (req, res, next) {
+  try {
+    const id = req.cookie.ssid;
+    const data = await Activity.find({ user_id: id });
+    const allActivity = data.json();
+    res.locals.allActivity = allActivity;
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+};
+
+controller.deleteActivity = async function (req, res, next) {
+  try {
+    const id = req.cookie.ssid;
+    const { activity } = req.body;
+    const deletedDoc = await Activity.findOneAndDelete({ activity: activity, user_id: id });
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+};
 module.exports = controller;
