@@ -1,7 +1,6 @@
 import React from 'react';
 
-const FlightQueries = props => {
-  
+const FlightQueries = (props) => {
   const checkBtnHelper = async () => {
     const passengers = document.getElementById('passengers').value;
     const departing = document.getElementById('departing').value;
@@ -9,36 +8,35 @@ const FlightQueries = props => {
     let response = await fetch('https://www.carboninterface.com/api/v1/estimates', {
       method: 'POST',
       headers: {
-        'Authorization':'Bearer gvwgBGeBXt6aeorzf8QVxQ',
-        'Content-Type':'application/json'
+        Authorization: 'Bearer gvwgBGeBXt6aeorzf8QVxQ',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         type: 'flight',
         passengers: passengers,
-        legs: [
-          {departure_airport: departing, destination_airport: arriving}
-        ]
-      })
-    })
-    .catch(err => console.log('error: ', err));
+        legs: [{ departure_airport: departing, destination_airport: arriving }],
+      }),
+    }).catch((err) => console.log('error: ', err));
     response = await response.json();
     const { carbon_lb } = response.data.attributes;
     props.updateCarbon(carbon_lb);
     return;
   };
-  
+
   return (
-    <div className="queriesFields" id='flightFields'>
-      <label htmlFor='passengers'>Number of Passengers:</label>
-      <input id='passengers' type='text'></input>
-      <label htmlFor='departing'>Departing Airport (e.g. JFK):</label>
-      <input id='departing' type='text'></input>
-      <label htmlFor='arriving'>Arriving Airport (e.g. LAX):</label>
-      <input id='arriving' type='text'></input>
-      <button className='homeBtn' id='checkBtn' onClick={checkBtnHelper}>Check</button>
+    <div className="queriesFields" id="flightFields">
+      <label htmlFor="passengers">Number of Passengers:</label>
+      <input id="passengers" type="text"></input>
+      <label htmlFor="departing">Departing Airport (e.g. JFK):</label>
+      <input id="departing" type="text"></input>
+      <label htmlFor="arriving">Arriving Airport (e.g. LAX):</label>
+      <input id="arriving" type="text"></input>
+      <button className="homeBtn" id="checkBtn" onClick={checkBtnHelper}>
+        Check
+      </button>
     </div>
-  )
-}
+  );
+};
 
 export default FlightQueries;
 /*
