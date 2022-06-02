@@ -42,7 +42,7 @@ router.delete('/activity', sessionController.verifySession, controller.deleteAct
   res.sendStatus(200)
 );
 
-// test routes
+// test routes can we delete these now
 router.post('/test', controller.saveActivity, (req, res) => {
   console.log('returning the following: ', res);
   return res.status(200).json(res.locals.newActivity);

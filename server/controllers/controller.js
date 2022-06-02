@@ -67,6 +67,10 @@ controller.saveActivity = async function (req, res, next) {
       { $push: { activity: newActivity._id } },
       { new: true }
     );
+    // updating total carbon in users collection
+    const newTotal = await User.findOneAndUpdate( {_id : res.locals.id}, {$inc: {total : carbon_lb}} )
+    res.locals.total = newTotal
+    console.log('new Total : ', newTotal)
     return next();
     // Update user document with new activity Id (will be generated after create method is done)
     // const update = User.findOneAndUpdate({username/userId}, activityId: activityId )
@@ -92,6 +96,11 @@ controller.deleteActivity = async function (req, res, next) {
     const id = req.cookie.ssid;
     const { activity } = req.body;
     const deletedDoc = await Activity.findOneAndDelete({ activity: activity, user_id: id });
+    const { carbon_lb } = deletedDoc
+    //decrement the total carbon in user
+    const newTotal = await User.findOneAndUpdate( {_id : res.locals.id}, {$inc: {total : -(carbon_lb)}} )
+    res.locals.total = newTotal
+    console.log('new total: ', newTotal)
     return next();
   } catch (err) {
     return next(err);
