@@ -28,7 +28,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
+    "bcrypt": "^5.0.1",
     "browserify": "^17.0.0",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "eslint": "^8.16.0",
     "eslint-plugin-react": "^7.30.0",

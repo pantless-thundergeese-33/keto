@@ -5,8 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { ConnectedApp } from './App.jsx';
 import store from './store';
 
-import styles from './stylesheets/styles.scss';
-
 // Create a root.
 const container = document.getElementById('app');
 const root = ReactDOMClient.createRoot(container);

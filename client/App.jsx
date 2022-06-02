@@ -8,7 +8,7 @@ import HomeContainer from './containers/HomeContainer.jsx';
 
 const mapState = (state) => state;
 
-const App = (props) => {
+const App = () => {
   return (
     <main>
       <Routes>
