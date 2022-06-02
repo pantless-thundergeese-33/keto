@@ -68,7 +68,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login">
-        <h3>Log In</h3>
+        <h3>Get started</h3>
 
         <label htmlFor="username">Username</label>
         <input
@@ -87,8 +87,8 @@ const Login = () => {
         />
 
         <div className="signInButtons">
-          <button onClick={handleLogin}>Log In</button>
-          <button onClick={handleAccountCreation}>Create Account</button>
+          <button onClick={handleLogin}>Login With Existing Account</button>
+          <button onClick={handleAccountCreation}>Create Me An Account</button>
         </div>
       </div>
 
@@ -97,8 +97,6 @@ const Login = () => {
           Continue as Guest
         </Link>
       </div>
-
-      <div className="flex-spacer"></div>
     </div>
   );
 };
