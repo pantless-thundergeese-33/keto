@@ -34,12 +34,8 @@ nav {
   color: white;
 }
 
-main {
-  height: 100%;
-}
-
-#app {
-  height: 90vh;
+.app {
+  height: 100vh;
   background: linear-gradient(128deg, $dark-blue 0%, $light-green 100%);
 }
 
@@ -48,7 +44,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .login {
@@ -98,6 +93,7 @@ button:hover {
 .guest-link-btn,
 .guest-link-btn:link,
 .guest-link-btn:visited {
+  display: block;
   margin-top: 0.2rem;
   font-size: 0.9rem;
   background-color: $medium-blue;
@@ -164,4 +160,38 @@ input {
 
 #checkBtn:hover {
   background-color: $dark-blue;
+}
+
+/** Login component */
+.login h3 {
+  margin-bottom: 1rem;
+}
+
+/** Eco counter */
+.eco-counter-container {
+  max-width: 25em;
+  background-color: $dark-blue;
+  margin: 2rem auto 0;
+  border-radius: 5px;
+  padding: 1.4rem 1rem;
+}
+
+.eco-counter-value {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.eco-counter-container p:not(.eco-counter-value) {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  color: #b9cfb2;
+  margin-top: 0.2rem;
+}
+
+/** Utility classes */
+.flex-center {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
 }

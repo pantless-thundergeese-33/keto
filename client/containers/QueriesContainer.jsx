@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import * as actions from '../actions/actions';
 import ElectricityQueries from '../components/ElectricityQueries.jsx';
 import FlightQueries from '../components/FlightQueries.jsx';
@@ -16,6 +17,7 @@ const queryComponentList = {
 const QueriesContainer = () => {
   const { isUser, activity, carbon } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const updateCarbon = (carbon) => dispatch(actions.updateCarbonActionCreator(carbon));
 
   const addBtnHelper = async () => {
