@@ -5,6 +5,7 @@ import * as actions from '../actions/actions';
 import ElectricityQueries from '../components/ElectricityQueries.jsx';
 import FlightQueries from '../components/FlightQueries.jsx';
 import ShippingQueries from '../components/ShippingQueries.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const queryComponentList = {
   '': () => <p>Search an activity to find its carbon footprint!</p>,
@@ -48,14 +49,6 @@ const QueriesContainer = () => {
       )}
     </div>
   );
-
-  // const ReturnHome = () => {
-  //   const navigate = useNavigate();
-
-  //   const handleOnClick = () => {
-  //     navigate('/login');
-  //   };
-  // };
 
   // const backButton = (
   //   <div className="addBtn">
