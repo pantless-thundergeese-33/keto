@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import * as actions from '../actions/actions';
 import ElectricityQueries from '../components/ElectricityQueries.jsx';
 import FlightQueries from '../components/FlightQueries.jsx';
@@ -15,6 +16,7 @@ const queryComponentList = {
 const QueriesContainer = () => {
   const { isUser, activity, carbon } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const updateCarbon = (carbon) => dispatch(actions.updateCarbonActionCreator(carbon));
 
   const addBtnHelper = async () => {
@@ -47,14 +49,28 @@ const QueriesContainer = () => {
     </div>
   );
 
+  const ReturnHome = () => {
+    const navigate = useNavigate();
+
+    const handleOnClick = () => {
+      navigate('/login');
+    };
+  };
+
+  const backButton = (
+    <div className="addBtn">
+      <button className="homeBtn" id="addBtn" onClick={handleOnClick}>
+        Return Home
+      </button>
+    </div>
+  );
+
   return (
     <div id="queriesContainer">
       {queryComponentList[activity](updateCarbon)}
-
       <div className="carbonOutput">
         {carbon == null ? '' : `${carbon} lbs of Carbon Emissions`}
       </div>
-
       {addButton}
     </div>
   );
