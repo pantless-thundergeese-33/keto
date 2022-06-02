@@ -49,21 +49,21 @@ const QueriesContainer = () => {
     </div>
   );
 
-  const ReturnHome = () => {
-    const navigate = useNavigate();
+  // const ReturnHome = () => {
+  //   const navigate = useNavigate();
 
-    const handleOnClick = () => {
-      navigate('/login');
-    };
-  };
+  //   const handleOnClick = () => {
+  //     navigate('/login');
+  //   };
+  // };
 
-  const backButton = (
-    <div className="addBtn">
-      <button className="homeBtn" id="addBtn" onClick={handleOnClick}>
-        Return Home
-      </button>
-    </div>
-  );
+  // const backButton = (
+  //   <div className="addBtn">
+  //     <button className="homeBtn" id="addBtn" onClick={handleOnClick}>
+  //       Return Home
+  //     </button>
+  //   </div>
+  // );
 
   return (
     <div id="queriesContainer">
