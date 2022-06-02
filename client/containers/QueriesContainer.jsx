@@ -4,6 +4,7 @@ import * as actions from '../actions/actions';
 import ElectricityQueries from '../components/ElectricityQueries.jsx';
 import FlightQueries from '../components/FlightQueries.jsx';
 import ShippingQueries from '../components/ShippingQueries.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const queryComponentList = {
   '': () => <p>Search an activity to find its carbon footprint!</p>,
@@ -47,14 +48,20 @@ const QueriesContainer = () => {
     </div>
   );
 
+  // const backButton = (
+  //   <div className="addBtn">
+  //     <button className="homeBtn" id="addBtn" onClick={handleOnClick}>
+  //       Return Home
+  //     </button>
+  //   </div>
+  // );
+
   return (
     <div id="queriesContainer">
       {queryComponentList[activity](updateCarbon)}
-
       <div className="carbonOutput">
         {carbon == null ? '' : `${carbon} lbs of Carbon Emissions`}
       </div>
-
       {addButton}
     </div>
   );
